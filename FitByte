@@ -1,0 +1,57 @@
+// Author: Conner Worrell
+
+// FitByte class representing an exercise assistant
+public class FitByte {
+    // Private fields
+    private int age; // Age of the user
+    private int restingHeartRate; // Resting heart rate of the user
+
+    // Default constructor
+    public FitByte() {
+        // Initialize fields with default values
+        this.age = 30;
+        this.restingHeartRate = 60;
+    }
+
+    // Non-default constructor
+    public FitByte(int age, int restingHeartRate) {
+        // Initialize fields with values provided by user
+        this.age = age;
+        this.restingHeartRate = restingHeartRate;
+    }
+
+    // Getter for age
+    public int getAge() {
+        return age;
+    }
+
+    // Setter for age
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    // Getter for restingHeartRate
+    public int getRestingHeartRate() {
+        return restingHeartRate;
+    }
+
+    // Setter for restingHeartRate
+    public void setRestingHeartRate(int restingHeartRate) {
+        this.restingHeartRate = restingHeartRate;
+    }
+
+    // Method to calculate and return target heart rate
+    public double targetHeartRate(double percentageOfMaximum) {
+        // Calculate maximum heart rate using the formula 206.3 - (0.711 * age)
+        double maxHeartRate = 206.3 - (0.711 * age);
+        // Calculate and return target heart rate using the formula (maxHeartRate - restingHeartRate) * percentageOfMaximum + restingHeartRate
+        return (maxHeartRate - restingHeartRate) * percentageOfMaximum + restingHeartRate;
+    }
+
+    // Additional method of our choice that returns void
+    public void displayUserDetails() {
+        // Display user details
+        System.out.println("User Age: " + age);
+        System.out.println("User Resting Heart Rate: " + restingHeartRate);
+    }
+}
