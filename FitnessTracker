@@ -1,0 +1,61 @@
+// Author: Worrell, Conner
+
+// Another class representing a fitness tracker
+public class FitnessTracker {
+    // Private fields
+    private String activity; // Current activity
+    private int steps; // Number of steps taken
+
+    // Default constructor
+    public FitnessTracker() {
+        // Initialize fields with default values
+        this.activity = "Walking";
+        this.steps = 0;
+    }
+
+    // Non-default constructor
+    public FitnessTracker(String activity, int steps) {
+        // Initialize fields with values provided by user
+        this.activity = activity;
+        this.steps = steps;
+    }
+
+    // Getter for activity
+    public String getActivity() {
+        return activity;
+    }
+
+    // Setter for activity
+    public void setActivity(String activity) {
+        this.activity = activity;
+    }
+
+    // Getter for steps
+    public int getSteps() {
+        return steps;
+    }
+
+    // Setter for steps
+    public void setSteps(int steps) {
+        this.steps = steps;
+    }
+
+    // Method to track activity progress and return a message
+    public String trackActivityProgress() {
+        // Example logic to determine progress based on steps
+        if (steps < 1000) {
+            return "You've just started, keep going!";
+        } else if (steps >= 1000 && steps < 5000) {
+            return "You're making progress, keep it up!";
+        } else {
+            return "Great job! You're doing fantastic!";
+        }
+    }
+
+    // Additional method of our choice that returns void
+    public void displayActivityDetails() {
+        // Display activity details
+        System.out.println("Current Activity: " + activity);
+        System.out.println("Number of Steps: " + steps);
+    }
+}
