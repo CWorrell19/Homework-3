@@ -1,0 +1,18 @@
+// Author: Conner Worrell
+
+// Main class containing the main method
+public class Program {
+    public static void main(String[] args) {
+        // Create instances of FitByte and FitnessTracker using non-default constructors
+        FitByte fitByte = new FitByte(35, 65);
+        FitnessTracker fitnessTracker = new FitnessTracker("Running", 2500);
+
+        // Call methods from FitByte class
+        System.out.println("Target Heart Rate: " + fitByte.targetHeartRate(0.75));
+        fitByte.displayUserDetails();
+
+        // Call methods from FitnessTracker class
+        System.out.println("Activity Progress: " + fitnessTracker.trackActivityProgress());
+        fitnessTracker.displayActivityDetails();
+    }
+}
