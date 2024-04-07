@@ -1,0 +1,103 @@
+// Author: [Your Name]
+
+import java.util.Scanner;
+
+// Main class for sorting students based on GPA
+public class SortStudents {
+    public static void main(String[] args) {
+        // Create scanner for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Create an array of Student objects
+        Student[] students = {
+                new Student("Alice", 3.8),
+                new Student("Bob", 3.5),
+                new Student("Charlie", 4.0),
+                new Student("David", 3.2),
+                new Student("Eve", 3.9)
+        };
+
+        // Prompt user to select sorting algorithm
+        System.out.println("Select sorting algorithm:");
+        System.out.println("1. Bubble Sort");
+        System.out.println("2. Selection Sort");
+        System.out.print("Enter your choice: ");
+        int choice = scanner.nextInt();
+
+        // Sort students based on user-selected algorithm
+        switch (choice) {
+            case 1:
+                bubbleSort(students);
+                break;
+            case 2:
+                selectionSort(students);
+                break;
+            default:
+                System.out.println("Invalid choice.");
+        }
+
+        // Display sorted list of student names
+        System.out.println("Sorted list of student names (descending order of GPA):");
+        for (Student student : students) {
+            System.out.println(student.getName());
+        }
+    }
+
+    // Bubble sort algorithm adapted for sorting students based on GPA in descending order
+    public static void bubbleSort(Student[] students) {
+        int n = students.length;
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (students[j].getGpa() < students[j + 1].getGpa()) {
+                    // Swap students if they are out of order
+                    Student temp = students[j];
+                    students[j] = students[j + 1];
+                    students[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    // Selection sort algorithm adapted for sorting students based on GPA in descending order
+    public static void selectionSort(Student[] students) {
+        int n = students.length;
+        for (int i = 0; i < n - 1; i++) {
+            int maxIdx = i;
+            for (int j = i + 1; j < n; j++) {
+                if (students[j].getGpa() > students[maxIdx].getGpa()) {
+                    maxIdx = j;
+                }
+            }
+            // Swap students if necessary
+            if (maxIdx != i) {
+                Student temp = students[i];
+                students[i] = students[maxIdx];
+                students[maxIdx] = temp;
+            }
+        }
+    }
+}
+
+//Approach to Adapting Algorithms:
+To enable the sorting algorithms to organize Student objects by GPA in descending order, I reconfigured the comparison process within the algorithms. Instead of assessing basic data types, I compared the GPA attributes of Student instances. By evaluating the GPA values, I ensured that the sorting sequence arranged the Student objects in the desired descending order.
+
+Encountered Challenges and Resolutions:
+A notable hurdle I encountered involved verifying the effectiveness of the sorting algorithms in managing the comparison and repositioning of Student objects. To address this obstacle, I meticulously examined the algorithm implementations, making necessary amendments to accommodate the unique characteristics of the Student class and its attributes. Furthermore, I conducted comprehensive testing and debugging sessions to affirm the accuracy of the sorting mechanisms.
+
+Illustrative Results:
+Presented below are the organized lists of student names arranged in descending order of GPA for each respective algorithm:
+
+Bubble Sort:
+
+Charlie
+Eve
+Alice
+Bob
+David
+Selection Sort:
+
+Charlie
+Eve
+Alice
+Bob
+David
