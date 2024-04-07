@@ -1,0 +1,97 @@
+// Author: Conner Worrell
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+// Main class for inventory management
+public class InventoryManagement {
+    public static void main(String[] args) {
+        // Initialize ArrayList to store items
+        ArrayList<Item> inventory = new ArrayList<>();
+
+        // Scanner for user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Main menu loop
+        while (true) {
+            // Display menu options
+            System.out.println("Inventory Management System");
+            System.out.println("1. Add Item");
+            System.out.println("2. Display Inventory");
+            System.out.println("3. Delete Item");
+            System.out.println("4. Exit");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+
+            // Perform actions based on user choice
+            switch (choice) {
+                case 1:
+                    addItem(inventory, scanner);
+                    break;
+                case 2:
+                    displayInventory(inventory);
+                    break;
+                case 3:
+                    deleteItem(inventory, scanner);
+                    break;
+                case 4:
+                    System.out.println("Exiting...");
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+    }
+
+    // Method to add an item to the inventory
+    public static void addItem(ArrayList<Item> inventory, Scanner scanner) {
+        System.out.print("Enter item ID: ");
+        String id = scanner.next();
+        System.out.print("Enter item name: ");
+        String name = scanner.next();
+        System.out.print("Enter item quantity: ");
+        int quantity = scanner.nextInt();
+
+        // Check if item already exists in inventory
+        for (Item item : inventory) {
+            if (item.getId().equals(id)) {
+                // Update quantity if item already exists
+                item.setQuantity(item.getQuantity() + quantity);
+                System.out.println("Item quantity updated.");
+                return;
+            }
+        }
+
+        // If item doesn't exist, add it to the inventory
+        inventory.add(new Item(id, name, quantity));
+        System.out.println("Item added to inventory.");
+    }
+
+    // Method to display all items in the inventory
+    public static void displayInventory(ArrayList<Item> inventory) {
+        System.out.println("Inventory:");
+        System.out.println("ID\tName\tQuantity");
+        for (Item item : inventory) {
+            System.out.println(item.getId() + "\t" + item.getName() + "\t" + item.getQuantity());
+        }
+    }
+
+    // Method to delete an item from the inventory
+    public static void deleteItem(ArrayList<Item> inventory, Scanner scanner) {
+        System.out.print("Enter item ID to delete: ");
+        String id = scanner.next();
+
+        // Iterate over inventory to find item with matching ID
+        for (Item item : inventory) {
+            if (item.getId().equals(id)) {
+                // Remove item from inventory and return
+                inventory.remove(item);
+                System.out.println("Item deleted from inventory.");
+                return;
+            }
+        }
+
+        // If item not found, display message
+        System.out.println("Item not found in inventory.");
+    }
+}
